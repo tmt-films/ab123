@@ -119,7 +119,7 @@ async def help_handler_query(bot: Bot, query: CallbackQuery):
 
 @Bot.on_callback_query(filters.regex("advHelp"))  # type: ignore
 async def adv_handler_query(_: Bot, query: CallbackQuery):
-    await query.delete_message()
+    await query.message.delete()
     await query.message.reply(
         FORMAT,
         reply_markup=InlineKeyboardMarkup(
@@ -136,7 +136,7 @@ async def adv_handler_query(_: Bot, query: CallbackQuery):
 @Bot.on_callback_query(filters.regex("back_home"))  # type: ignore
 async def back_home_handler(_: Bot, query: CallbackQuery):
     await query.answer()
-    await query.delete_message()
+    await query.message.delete()
     await start_handler(_, query.message)
 
 
