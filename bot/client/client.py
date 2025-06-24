@@ -116,6 +116,7 @@ class PatchedClient(PyroClient):
         retries: int = session.Session.MAX_RETRIES,
         timeout: float = session.Session.WAIT_TIMEOUT,
         sleep_threshold: float = None,  # type: ignore
+        **kwargs,
     ):
         while True:
             try:
@@ -124,6 +125,7 @@ class PatchedClient(PyroClient):
                     retries=retries,
                     timeout=timeout,
                     sleep_threshold=sleep_threshold,
+                    **kwargs,
                 )
             except (errors.FloodWait) as e:
                 LOGGER(__name__).warning(f"{self.me.first_name} Sleeping for - {e.value} | {e}")
